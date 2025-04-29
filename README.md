@@ -8,3 +8,10 @@ expected.txt \ ## list of species identifiers used in analysis
 concat_sco_101.fasta \ ## output file name
 sco_comp_g90/SCOgreat101.txt.OrthoGroup* ## completed orthogroup sequences in a directory
 ```
+`complete_ogs.sh` - This takes in the full list of species in a single copy ortholog analysis, and completes the entries if you are using SCOs in >x % species
+```
+./add_missing_species.sh \
+-s /path/to/species_list.txt \ ## list of all species being used
+-i /path/to/orthogroups \ ## path to the extracted orthogroups 
+-o /path/to/output_dir ## path to directory to write the completed orthogroups to 
+```
