@@ -15,3 +15,7 @@ sco_comp_g90/SCOgreat101.txt.OrthoGroup* ## completed orthogroup sequences in a 
 -i /path/to/orthogroups \ ## path to the extracted orthogroups 
 -o /path/to/output_dir ## path to directory to write the completed orthogroups to 
 ```
+
+`busco_stats.sh` - Script to loop through all files from a BUSCO analysis and generate a long form data frame that can be used in R visualisation.  
+
+`summary_stats.sh` - Script to loop through raw reads, trimmed reads, and contaminant removed reads to get number of reads. This is slow and I can definetly improve it to make it quicker. 
