@@ -18,4 +18,12 @@ sco_comp_g90/SCOgreat101.txt.OrthoGroup* ## completed orthogroup sequences in a 
 
 `busco_stats.sh` - Script to loop through all files from a BUSCO analysis and generate a long form data frame that can be used in R visualisation.  
 
-`summary_stats.sh` - Script to loop through raw reads, trimmed reads, and contaminant removed reads to get number of reads. This is slow and I can definetly improve it to make it quicker. 
+`summary_stats.sh` - Script to loop through raw reads, trimmed reads, and contaminant removed reads to get number of reads. This is slow and I can definetly improve it to make it quicker.  
+
+`extract.py` - getting alignment rates from all salmon directories in a directory.  Requires `bioperl` conda environment activated. 
+```
+perl \
+extract.py \
+/scratch/alpine/beyo2625/apal_genet/align \ ## directory with all salmon align directories in it
+./mapping_summary.tsv ## output file to write the results to. 
+```
