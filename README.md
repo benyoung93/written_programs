@@ -27,3 +27,20 @@ extract.py \
 /scratch/alpine/beyo2625/apal_genet/align \ ## directory with all salmon align directories in it
 ./mapping_summary.tsv ## output file to write the results to. 
 ```
+
+`iqtree_mod_select.py` - this takes the outputs from generated genetrees from an `IQtree3` run and makes a tsv file with the model you want.  
+```
+./test.py --help
+usage: test.py [-h] -i INPUT -o OUTPUT [-crit {AIC,BIC,AICc}]
+
+Extract best-fit models from IQ-TREE logs.
+
+options:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        Root directory containing SCO directories.
+  -o OUTPUT, --output OUTPUT
+                        Output TSV file.
+  -crit {AIC,BIC,AICc}, --criterion {AIC,BIC,AICc}
+                        Criterion for model selection (default: AIC)
+```
