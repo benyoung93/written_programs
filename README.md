@@ -44,3 +44,21 @@ options:
   -crit {AIC,BIC,AICc}, --criterion {AIC,BIC,AICc}
                         Criterion for model selection (default: AIC)
 ```
+`parse_antismash.py` - parses all the knownclusterblast results for a number of samples for all regions. You will need a basic python biological environment. It will note which programs it needs to be loaded. 
+```
+./parse_antismash.py --help
+usage: parse_antismash.py [-h] --input_root INPUT_ROOT --output_root OUTPUT_ROOT [--cluster_subdir CLUSTER_SUBDIR] [--samples SAMPLES [SAMPLES ...]]
+
+Parse ClusterBlast/antismash .txt files into long tables
+
+options:
+  -h, --help            show this help message and exit
+  --input_root INPUT_ROOT
+                        Path to parent directory that contains sample directories (e.g. /path/to/barcodes)
+  --output_root OUTPUT_ROOT
+                        Where to write per-sample results (a subdir per sample will be created)
+  --cluster_subdir CLUSTER_SUBDIR
+                        Name of subdirectory inside each sample that contains the .txt files (default: knownclusterblastdirectory)
+  --samples SAMPLES [SAMPLES ...]
+                        Optional: list of sample directory names, paths, or glob patterns (e.g. "barcode*", "sample01", "/abs/path/sampleX"). If omitted, all subdirectories of --input_root are processed.
+```
