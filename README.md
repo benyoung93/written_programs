@@ -90,6 +90,26 @@ options:
                         Optional: list of sample directory names, paths, or glob patterns (e.g. "barcode*", "sample01", "/abs/path/sampleX"). If omitted, all subdirectories of --input_root are processed.
 ```
 
+`summarise_proteinortho.py` - Will take the results of a `proteinortho` run and generate `.txt` files with summaries for single copy orthologs (SCOs) between all species, and SCO in > xx% of species from 50% upwards in increments of 5. The outputs can then be used to then extract the SCOs from the proteomes for downstream analyses. 
+
+```
+usage: summarise_proteinortho.py [-h] [-e EXTENSION] [-o OUTPUT_DIR] tsv_file fasta_dir
+
+Process ProteinOrtho output to extract SCOs at different percentage thresholds.
+
+positional arguments:
+  tsv_file              ProteinOrtho .tsv file
+  fasta_dir             Directory with input FASTA files
+
+options:
+  -h, --help            show this help message and exit
+  -e EXTENSION, --extension EXTENSION
+                        FASTA file extension (default: .faa)
+  -o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        Directory for output SCO files
+```
+
+
 ## Bash Scripts  
 
 `busco_stats.sh` - Script to loop through all files from a BUSCO analysis and generate a long form data frame that can be used in R visualisation.  
