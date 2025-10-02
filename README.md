@@ -1,19 +1,56 @@
 # Written Programs  
 A repository for useful programs used in in bioinformatic analyses. Brief descriptions will be below
 
-`concat.sh` - This is used for concatenating completed orthogorup sequences in a single copy orthology analysis when using >x% species in the analysis. 
+`combine_seqs.py` - This is used for concatenating completed orthogroup sequences in a single copy ortholog analysis. It will generate one file with all alignments for each species so to be used in `raxml`, `iqtree` etc etc.  
 ```
-./combine.pl \
-expected.txt \ ## list of species identifiers used in analysis
-concat_sco_101.fasta \ ## output file name
-sco_comp_g90/SCOgreat101.txt.OrthoGroup* ## completed orthogroup sequences in a directory
+./combine_seqs.py --help
+usage: combine_seqs.py [-h] --expected_file EXPECTED_FILE --output_file
+                       OUTPUT_FILE --ortholog_files ORTHOLOG_FILES
+                       [ORTHOLOG_FILES ...] [--line_length LINE_LENGTH]
+
+Concatenate ortholog FASTA files across species and validate sequence lengths.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --expected_file EXPECTED_FILE
+                        File with expected species list (lines like >species)
+  --output_file OUTPUT_FILE
+                        Path to write concatenated FASTA
+  --ortholog_files ORTHOLOG_FILES [ORTHOLOG_FILES ...]
+                        Ortholog FASTA files to concatenate
+  --line_length LINE_LENGTH
+                        Wrap FASTA sequences at this line length (0 = no
+                        wrapping)
 ```
-`complete_ogs.sh` - This takes in the full list of species in a single copy ortholog analysis, and completes the entries if you are using SCOs in >x % species
+`complete_missing_species.py` - This takes in the full list of species in a single copy ortholog analysis, and completes the entries if you are using SCOs in >x% of species. It will calculate the length of the alignment in each SCO, and then complete any missing species using `---` as the padding sequences.  
 ```
-./add_missing_species.sh \
--s /path/to/species_list.txt \ ## list of all species being used
--i /path/to/orthogroups \ ## path to the extracted orthogroups 
--o /path/to/output_dir ## path to directory to write the completed orthogroups to 
+./complete_missing_species.py --help
+usage: complete_missing_species.py [-h] --species_file SPECIES_FILE
+                                   --input_dir INPUT_DIR
+                                   [--input_ext INPUT_EXT] --output_dir
+                                   OUTPUT_DIR [--output_ext OUTPUT_EXT]
+                                   [--line_length LINE_LENGTH]
+                                   [--missing_report MISSING_REPORT]
+
+Fill missing species in orthogroup FASTA files with padded sequences.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --species_file SPECIES_FILE
+                        File with expected species list (lines like >species)
+  --input_dir INPUT_DIR
+                        Directory with cleaned orthogroup files
+  --input_ext INPUT_EXT
+                        Input file extension to select (default: .fa)
+  --output_dir OUTPUT_DIR
+                        Directory to write completed orthogroup files
+  --output_ext OUTPUT_EXT
+                        Output file extension (default: .fasta)
+  --line_length LINE_LENGTH
+                        Max characters per sequence line (default: 60)
+  --missing_report MISSING_REPORT
+                        Optional path to write a table of missing species per
+                        orthogroup
 ```
 
 `busco_stats.sh` - Script to loop through all files from a BUSCO analysis and generate a long form data frame that can be used in R visualisation.  
