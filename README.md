@@ -1,5 +1,7 @@
 # Written Programs  
-A repository for useful programs used in in bioinformatic analyses. Brief descriptions will be below
+A repository for useful programs used in in bioinformatic analyses. Brief descriptions for each below.  
+
+## Python Scripts  
 
 `combine_seqs.py` - This is used for concatenating completed orthogroup sequences in a single copy ortholog analysis. It will generate one file with all alignments for each species so to be used in `raxml`, `iqtree` etc etc.  
 ```
@@ -52,6 +54,8 @@ optional arguments:
                         Optional path to write a table of missing species per
                         orthogroup
 ```
+
+## Bash Scripts  
 
 `busco_stats.sh` - Script to loop through all files from a BUSCO analysis and generate a long form data frame that can be used in R visualisation.  
 
