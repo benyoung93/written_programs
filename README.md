@@ -89,7 +89,43 @@ options:
   --samples SAMPLES [SAMPLES ...]
                         Optional: list of sample directory names, paths, or glob patterns (e.g. "barcode*", "sample01", "/abs/path/sampleX"). If omitted, all subdirectories of --input_root are processed.
 ```
+`rename.py` - This python script is super useful. It essentially takes a mish mash of named proteomes and makes a new directory with a standard prefix (i.e. sample01, sample02 etc), then relabels the proteins within as sample01_xx|, and then finally cleans any whitespace or characters which can cause problems (i.e. *) for programs like `proteinortho`. It also generates a mapping file of old name to new name (which can be used for tree visualisation), and also a stats file of sequence types removed. It also has a easter egg hidden in it. 
+```
+./rename.py --help
+usage: rename.py [-h] [-p PREFIX]
+                 input_dir output_dir_fastas output_dir_summary
 
+Standardize FASTA filenames and headers for phylogenomics projects, generate
+species list, separate summary files, and show progress.
+
+positional arguments:
+  input_dir             Directory containing input FASTA files (only FASTAs
+                        should be present)
+  output_dir_fastas     Directory where cleaned/renamed FASTA files will be
+                        saved
+  output_dir_summary    Directory where summary files (mapping, cleanup,
+                        species list) will be saved
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p PREFIX, --prefix PREFIX
+                        Prefix for renamed files and headers (default:
+                        'sample')
+```
+`summarise_busco_res.py` - If you have run all your BUSCO analysis in one directory, this script will look through all the sub directories in the BUSCO results directory, identify the short summary file, and generate a long style data frame that can be used in R for plotting. This is very useful and I use this alot. 
+
+```
+usage: summarise_busco_res.py [-h] -i INDIR [-o OUTFILE]
+
+Parse BUSCO short_summary.txt files into a long-format TSV table.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INDIR, --indir INDIR
+                        Base input directory containing BUSCO result folders (e.g., seedXXX_asco).
+  -o OUTFILE, --outfile OUTFILE
+                        Output TSV file. Default: stdout
+```
 `summarise_proteinortho.py` - Will take the results of a `proteinortho` run and generate `.txt` files with summaries for single copy orthologs (SCOs) between all species, and SCO in > xx% of species from 50% upwards in increments of 5. The outputs can then be used to then extract the SCOs from the proteomes for downstream analyses. 
 
 ```
@@ -108,22 +144,6 @@ options:
   -o OUTPUT_DIR, --output_dir OUTPUT_DIR
                         Directory for output SCO files
 ```
-
-`summarise_busco_res.py` - If you have run all your BUSCO analysis in one directory, this script will look through all the sub directories in the BUSCO results directory, identify the short summary file, and generate a long style data frame that can be used in R for plotting. This is very useful and I use this alot. 
-
-```
-usage: summarise_busco_res.py [-h] -i INDIR [-o OUTFILE]
-
-Parse BUSCO short_summary.txt files into a long-format TSV table.
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -i INDIR, --indir INDIR
-                        Base input directory containing BUSCO result folders (e.g., seedXXX_asco).
-  -o OUTFILE, --outfile OUTFILE
-                        Output TSV file. Default: stdout
-```
-
 ## Bash Scripts  
 
 `busco_stats.sh` - Script to loop through all files from a BUSCO analysis and generate a long form data frame that can be used in R visualisation.  
