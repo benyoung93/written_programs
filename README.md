@@ -109,6 +109,20 @@ options:
                         Directory for output SCO files
 ```
 
+`summarise_busco_res.py` - If you have run all your BUSCO analysis in one directory, this script will look through all the sub directories in the BUSCO results directory, identify the short summary file, and generate a long style data frame that can be used in R for plotting. This is very useful and I use this alot. 
+
+```
+usage: summarise_busco_res.py [-h] -i INDIR [-o OUTFILE]
+
+Parse BUSCO short_summary.txt files into a long-format TSV table.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INDIR, --indir INDIR
+                        Base input directory containing BUSCO result folders (e.g., seedXXX_asco).
+  -o OUTFILE, --outfile OUTFILE
+                        Output TSV file. Default: stdout
+```
 
 ## Bash Scripts  
 
