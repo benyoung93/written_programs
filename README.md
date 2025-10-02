@@ -55,23 +55,9 @@ optional arguments:
                         orthogroup
 ```
 
-## Bash Scripts  
-
-`busco_stats.sh` - Script to loop through all files from a BUSCO analysis and generate a long form data frame that can be used in R visualisation.  
-
-`summary_stats.sh` - Script to loop through raw reads, trimmed reads, and contaminant removed reads to get number of reads. This is slow and I can definetly improve it to make it quicker.  
-
-`extract.py` - getting alignment rates from all salmon directories in a directory.  Requires `bioperl` conda environment activated. 
-```
-perl \
-extract.py \
-/scratch/alpine/beyo2625/apal_genet/align \ ## directory with all salmon align directories in it
-./mapping_summary.tsv ## output file to write the results to. 
-```
-
 `iqtree_mod_select.py` - this takes the outputs from generated genetrees from an `IQtree3` run and makes a tsv file with the model you want.  
 ```
-./test.py --help
+./iqtree_mod_select.py --help
 usage: test.py [-h] -i INPUT -o OUTPUT [-crit {AIC,BIC,AICc}]
 
 Extract best-fit models from IQ-TREE logs.
@@ -85,7 +71,7 @@ options:
   -crit {AIC,BIC,AICc}, --criterion {AIC,BIC,AICc}
                         Criterion for model selection (default: AIC)
 ```
-`parse_antismash.py` - parses all the knownclusterblast results for a number of samples for all regions. You will need a basic python biological environment. It will note which programs it needs to be loaded. 
+`parse_antismash.py` - parses all the knownclusterblast results for a number of samples for all regions. You will need a basic python biological environment. It will note which programs need to be loaded so you may need to activate a `conda` environmnet with `python` biological programs.  
 ```
 ./parse_antismash.py --help
 usage: parse_antismash.py [-h] --input_root INPUT_ROOT --output_root OUTPUT_ROOT [--cluster_subdir CLUSTER_SUBDIR] [--samples SAMPLES [SAMPLES ...]]
@@ -103,3 +89,19 @@ options:
   --samples SAMPLES [SAMPLES ...]
                         Optional: list of sample directory names, paths, or glob patterns (e.g. "barcode*", "sample01", "/abs/path/sampleX"). If omitted, all subdirectories of --input_root are processed.
 ```
+
+## Bash Scripts  
+
+`busco_stats.sh` - Script to loop through all files from a BUSCO analysis and generate a long form data frame that can be used in R visualisation.  
+
+`summary_stats.sh` - Script to loop through raw reads, trimmed reads, and contaminant removed reads to get number of reads. This is slow and I can definetly improve it to make it quicker.  
+
+`extract.py` - getting alignment rates from all salmon directories in a directory.  Requires `bioperl` conda environment activated. 
+```
+perl \
+extract.py \
+/scratch/alpine/beyo2625/apal_genet/align \ ## directory with all salmon align directories in it
+./mapping_summary.tsv ## output file to write the results to. 
+```
+
+
