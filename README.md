@@ -119,10 +119,10 @@ options:
 
 ## Perl (ewwwwwwww)
 
-`extract_salmon_aln.py` - getting alignment rates from all salmon directories in a directory.  Requires `bioperl` conda environment activated. 
+`extract_salmon_aln.pl` - getting alignment rates from all salmon directories in a directory.  Requires `bioperl` conda environment activated. 
 ```
 perl \
-extract.py \
+extract_salmon_aln.pl \
 /scratch/alpine/beyo2625/apal_genet/align \ ## directory with all salmon align directories in it
 ./mapping_summary.tsv ## output file to write the results to. 
 ```
