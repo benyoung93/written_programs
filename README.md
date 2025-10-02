@@ -116,7 +116,10 @@ options:
 
 `summary_stats.sh` - Script to loop through raw reads, trimmed reads, and contaminant removed reads to get number of reads. This is slow and I can definetly improve it to make it quicker.  
 
-`extract.py` - getting alignment rates from all salmon directories in a directory.  Requires `bioperl` conda environment activated. 
+
+## Perl (ewwwwwwww)
+
+`extract_salmon_aln.py` - getting alignment rates from all salmon directories in a directory.  Requires `bioperl` conda environment activated. 
 ```
 perl \
 extract.py \
